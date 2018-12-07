@@ -50,7 +50,9 @@ steps:
 - task: CmdLine@2
   inputs:
     displayName: 'glide install'
-    script: sudo apt-get install glide
+    script: |
+      sudo add-apt-repository ppa:masterminds/glide && sudo apt-get update
+      sudo apt-get install glide
 
 - task: CmdLine@2
   inputs:

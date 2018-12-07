@@ -39,8 +39,10 @@ steps:
     displayName: 'Print Environment Info'
     script: printenv
 
+- powershell: |
+    Write-Host '##vso[task.setvariable variable=GOPATH]$(System.DefaultWorkingDirectory)'
+
 - script: |
-    echo '##vso[task.setvariable variable=GOPATH]$(System.DefaultWorkingDirectory)'
     echo 1 GOPATH=$Env:$GOPATH
     echo 2 GOPATH=$GOPATH
     echo 3 GOPATH=$(GOPATH)

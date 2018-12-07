@@ -4,15 +4,15 @@
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/powershell?view=vsts
 # http://mohamedradwan.com/2018/03/11/vsts-build-variables-and-echo/
 # Write-Host "##vso[task.setvariable variable=YourVSTSVariableName]$yourPowershellVariable"
-
+# https://github.com/dynatrace-innovationlab/provision-acm-workshop/blob/master/docker-go-builder/Dockerfile
 
 #'azureSubscriptionEndpoint' input is the name of Azure Service Connection. 
 # See Azure Resource Manager service connection to manually set up the connection. 
 #'dockerRegistryEndpoint' input is the name of Docker Registry service connection.
 
-#resources:
-#  containers:
-#  - container: my_container
+resources:
+  containers:
+  - container: dynatraceacm/gobuilder
 #    image: ubuntu:16.04
 
 pool:
@@ -28,7 +28,7 @@ variables:
   TAG_DEV: "$(TAG)-$(VERSION)-$(build.buildId)"
   TAG_STAGING: "$(TAG)-$(VERSION)"
 
-#container: my_container
+container: dynatraceacm/gobuilder
 #  displayName: 'Stage Go Files'
 #   displayName: 'Glide Install'
 #   displayName: 'Run Go Build'
@@ -43,9 +43,7 @@ steps:
     Write-Host '##vso[task.setvariable variable=GOPATH]$(System.DefaultWorkingDirectory)'
 
 - script: |
-    echo 1 GOPATH=$Env:$GOPATH
-    echo 2 GOPATH=$GOPATH
-    echo 3 GOPATH=$(GOPATH)
+    echo GOPATH=$(GOPATH)
     mkdir -p src/github.com/dynatrace-sockshop/catalogue/
     cp -R ./api src/github.com/dynatrace-sockshop/catalogue/
     cp -R ./main.go src/github.com/dynatrace-sockshop/catalogue/
@@ -69,7 +67,7 @@ steps:
       glide install
     
 - script: |
-    go build -a -ldflags -linkmode=external -installsuffix cgo -o $(System.DefaultWorkingDirectory)/catalogue main.go
+    go build -a -ldflags -linkmode=external -installsuffix cgo -o $(GOPATH)/catalogue main.go
 
 - task: Docker@1
   displayName: 'Build an image'

@@ -28,11 +28,7 @@ steps:
     cp -R ./main.go src/github.com/dynatrace-sockshop/catalogue/
     cp -R ./glide.* src/github.com/dynatrace-sockshop/catalogue/
     cd src/github.com/dynatrace-sockshop/catalogue
-
-- task: Go@0
-  inputs:
-    command: 'build' # Options: get, build, test, custom
-    arguments: -a -ldflags -linkmode=external -installsuffix cgo -o $GOPATH/catalogue main.go
+    go build -a -ldflags -linkmode=external -installsuffix cgo -o $GOPATH/catalogue main.go
 
 - task: Maven@3
   inputs:

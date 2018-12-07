@@ -30,9 +30,15 @@ variables:
 #   displayName: 'Glide Install'
 #   displayName: 'Run Go Build'
 
+steps:
 - task: CmdLine@2
   inputs:
     displayName: 'Print Environment Info'
+    script: printenv
+
+- task: CmdLine@2
+  inputs:
+    displayName: 'glide install'
     script: printenv
 
 - script: |

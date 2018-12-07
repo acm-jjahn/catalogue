@@ -37,8 +37,8 @@ steps:
     script: printenv
 
 - script: |
-    #export GOPATH=$PWD
-    echo GOPATH=$(System.DefaultWorkingDirectory)
+    export GOPATH=$(System.DefaultWorkingDirectory)
+    export GOPATH=$GOPATH
     mkdir -p src/github.com/dynatrace-sockshop/catalogue/
     cp -R ./api src/github.com/dynatrace-sockshop/catalogue/
     cp -R ./main.go src/github.com/dynatrace-sockshop/catalogue/

@@ -36,11 +36,6 @@ steps:
     displayName: 'Print Environment Info'
     script: printenv
 
-- task: CmdLine@2
-  inputs:
-    displayName: 'glide install'
-    script: printenv
-
 - script: |
     #export GOPATH=$PWD
     echo GOPATH=$(System.DefaultWorkingDirectory)
@@ -55,6 +50,11 @@ steps:
 - task: CmdLine@2
   inputs:
     displayName: 'glide install'
+    script: sudo apt-get install glide
+
+- task: CmdLine@2
+  inputs:
+    displayName: 'Install packages and dependencies'
     script: |
       glide install
     

@@ -30,8 +30,10 @@ variables:
 #   displayName: 'Glide Install'
 #   displayName: 'Run Go Build'
 
-steps:
-- script: printenv
+- task: CmdLine@2
+  inputs:
+    displayName: 'Print Environment Info'
+    script: printenv
 
 - script: |
     #export GOPATH=$PWD
@@ -47,7 +49,7 @@ steps:
 - task: CmdLine@2
   inputs:
     displayName: 'glide install'
-    spript: |
+    script: |
       glide install
     
 - script: |

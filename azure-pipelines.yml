@@ -10,9 +10,9 @@
 # See Azure Resource Manager service connection to manually set up the connection. 
 #'dockerRegistryEndpoint' input is the name of Docker Registry service connection.
 
-resources:
-  containers:
-  - container: dynatraceacm/gobuilder
+#resources:
+#  containers:
+#  - container: dynatraceacm/gobuilder
 #    image: ubuntu:16.04
 
 pool:
@@ -28,7 +28,7 @@ variables:
   TAG_DEV: "$(TAG)-$(VERSION)-$(build.buildId)"
   TAG_STAGING: "$(TAG)-$(VERSION)"
 
-container: dynatraceacm/gobuilder
+#container: dynatraceacm/gobuilder
 #  displayName: 'Stage Go Files'
 #   displayName: 'Glide Install'
 #   displayName: 'Run Go Build'

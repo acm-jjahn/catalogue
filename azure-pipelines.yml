@@ -49,8 +49,6 @@ steps:
     cp -R ./main.go src/github.com/dynatrace-sockshop/catalogue/
     cp -R ./glide.* src/github.com/dynatrace-sockshop/catalogue/
     cd src/github.com/dynatrace-sockshop/catalogue
-    pwd
-    ls -l
 
 - task: CmdLine@2
   inputs:
@@ -67,6 +65,7 @@ steps:
       glide install
     
 - script: |
+    ls -l /usr/local/go1.11/src
     go build -a -ldflags -linkmode=external -installsuffix cgo -o $(GOPATH)/catalogue main.go
 
 - task: Docker@1

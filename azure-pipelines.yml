@@ -2,6 +2,7 @@
 # https://github.com/acm-jjahn/carts/blob/master/Jenkinsfile
 #TAG = "$(DOCKER_REGISTRY_URL):5000/library/$(ARTEFACT_ID)"
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/utility/powershell?view=vsts
+# http://mohamedradwan.com/2018/03/11/vsts-build-variables-and-echo/
 
 #'azureSubscriptionEndpoint' input is the name of Azure Service Connection. 
 # See Azure Resource Manager service connection to manually set up the connection. 
@@ -37,8 +38,8 @@ steps:
     script: printenv
 
 - script: |
-    export GOPATH=$(System.DefaultWorkingDirectory)
-    export GOPATH=$GOPATH
+    $Env:GOPATH=$(System.DefaultWorkingDirectory)
+    echo GOPATH=$GOPATH
     mkdir -p src/github.com/dynatrace-sockshop/catalogue/
     cp -R ./api src/github.com/dynatrace-sockshop/catalogue/
     cp -R ./main.go src/github.com/dynatrace-sockshop/catalogue/

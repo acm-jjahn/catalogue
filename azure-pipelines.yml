@@ -40,9 +40,16 @@ steps:
     cd src/github.com/dynatrace-sockshop/catalogue
     pwd
     ls -l
+  displayName: 'Stage Go Files'
+
+
+- spript: |
+    glide install
+  displayName: 'Glide Install'
 
 - script: |
     go build -a -ldflags -linkmode=external -installsuffix cgo -o $(System.DefaultWorkingDirectory)/catalogue main.go
+  displayName: 'Run Go Build'
 
 - task: Docker@1
   displayName: 'Build an image'

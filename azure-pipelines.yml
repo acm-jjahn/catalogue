@@ -39,7 +39,7 @@ steps:
 
 - script: |
     $Env:GOPATH=$(System.DefaultWorkingDirectory)
-    echo GOPATH=$GOPATH
+    echo GOPATH=$Env:$GOPATH
     mkdir -p src/github.com/dynatrace-sockshop/catalogue/
     cp -R ./api src/github.com/dynatrace-sockshop/catalogue/
     cp -R ./main.go src/github.com/dynatrace-sockshop/catalogue/

@@ -34,13 +34,13 @@ variables:
 #   displayName: 'Run Go Build'
 
 steps:
+- powershell: |
+    Write-Host '##vso[task.setvariable variable=GOPATH]$(System.DefaultWorkingDirectory)'
+
 - task: CmdLine@2
   inputs:
     displayName: 'Print Environment Info'
     script: printenv
-
-- powershell: |
-    Write-Host '##vso[task.setvariable variable=GOPATH]$(System.DefaultWorkingDirectory)'
 
 - script: |
     echo GOPATH=$(GOPATH)
@@ -63,7 +63,9 @@ steps:
     displayName: 'Install packages and dependencies'
     script: |
       glide install
-    
+      pwd
+      ls -l
+
 - script: |
     ls -l /usr/local/go1.11/src
     go build -a -ldflags -linkmode=external -installsuffix cgo -o $(GOPATH)/catalogue main.go

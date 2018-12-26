@@ -39,13 +39,13 @@ steps:
   displayName: 'Set GOPATH environment variable'
 
 - task: CmdLine@2
+  displayName: 'Print Environment Info'
   inputs:
-    displayName: 'Print Environment Info'
     script: printenv
 
 - task: CmdLine@2
+  displayName: 'glide GO package manager install'
   inputs:
-    displayName: 'glide GO package manager install'
     script: |
       sudo mkdir -p /home/vsts/go/src
       sudo add-apt-repository ppa:masterminds/glide && sudo apt-get update

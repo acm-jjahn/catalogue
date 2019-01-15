@@ -95,6 +95,12 @@ steps:
     contents: manifest/*
     targetFolder: $(Build.ArtifactStagingDirectory)
 
+- task: CopyFiles@2
+  displayName: Create Load test file with jmx
+  inputs:
+    contents: jmeter/*
+    targetFolder: $(Build.ArtifactStagingDirectory)
+
 - task: PublishBuildArtifacts@1
   displayName: Publish Archive with Kubernetes YAML
   inputs:
